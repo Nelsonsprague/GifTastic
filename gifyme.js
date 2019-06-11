@@ -12,7 +12,8 @@ function renderButtons(){
 $("#buttons-view").on("click", "button" ,function(){
 var search=$(this).text();
 var api = "GJZ9WvM1Yzqy48M1T5lInlpdiDDfCOeM";
-var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" +api+ "&tag=" +search;
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+       search +"&api_key=" +api+ "&limit=10";
 
 console.log(queryURL)
 $.ajax({
@@ -20,13 +21,22 @@ $.ajax({
     method: "GET"
 })
 .then(function(response){
-    console.log(response)
-    var imageUrl = response.data.image_original_url;
+    var results = response.data;
+    for(var i=0;i<results.length;i++){
+        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+            var gifDiv = $("<div>")
+            var rating = results[i].rating;
+            var p = $("<p>").text("Rating: "+rating)
     var image = $("<img>");
+    console.log(results)
+    var imageUrl = results[i].images.fixed_height_still.url;
     image.attr("src", imageUrl)
+    image.attr("alt", search)
     $("#images").prepend(image)
-    console.log(image)
-})
+
+        }
+    }
+    })
 
 })
 
