@@ -23,7 +23,7 @@ $.ajax({
 .then(function(response){
     var results = response.data;
     for(var i=0;i<results.length;i++){
-        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+        if (results[i].rating !== "r" && results[i].images.rating !== "pg-13") {
             var gifDiv = $("<div>")
             var rating = results[i].rating;
             var p = $("<p>").text("Rating: "+rating)
@@ -32,7 +32,12 @@ $.ajax({
     var imageUrl = results[i].images.fixed_height_still.url;
     image.attr("src", imageUrl)
     image.attr("alt", search)
-    $("#images").prepend(image)
+
+    gifDiv.append(p)
+    gifDiv.append(image)
+
+    $("#images").prepend(gifDiv)
+
 
         }
     }
