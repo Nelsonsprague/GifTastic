@@ -19,7 +19,14 @@ $.ajax({
     url:queryURL,
     method: "GET"
 })
-
+.then(function(response){
+    console.log(response)
+    var imageUrl = response.data.image_original_url;
+    var image = $("<img>");
+    image.attr("src", imageUrl)
+    $("#images").prepend(image)
+    console.log(image)
+})
 
 })
 
