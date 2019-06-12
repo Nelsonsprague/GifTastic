@@ -60,7 +60,7 @@ $.ajax({
 renderButtons();
 
 
-$("#images").on("click", ".gif",function(){
+$("#images").on("click", ".gif", function(){
     
     var state = $(this).attr("data-state");
     console.log(this);
