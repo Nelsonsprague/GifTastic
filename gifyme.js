@@ -9,6 +9,14 @@ function renderButtons(){
         $("#buttons-view").append(a);
     }
 }
+$("#add-gif").on("click", function(event){
+event.preventDefault();
+var gif = $("#search-input").val().trim();
+topics.push(gif)
+
+renderButtons();
+
+})
 $("#buttons-view").on("click", "button" ,function(){
 var search=$(this).text();
 var api = "GJZ9WvM1Yzqy48M1T5lInlpdiDDfCOeM";
