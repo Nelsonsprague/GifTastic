@@ -27,11 +27,15 @@ $.ajax({
             var gifDiv = $("<div>")
             var rating = results[i].rating;
             var p = $("<p>").text("Rating: "+rating)
-    var image = $("<img>");
+    var image = $("<img>").addClass("gif");
     console.log(results)
     var imageUrl = results[i].images.fixed_height_still.url;
-    image.attr("src", imageUrl)
-    image.attr("alt", search)
+    image.attr("src", imageUrl);
+    image.attr("alt", search);
+    image.attr("data-state", "still");
+    image.attr("data-animate", results[i].images.fixed_height.url)
+    image.attr("data-still", results[i].images.fixed_height_still.url)
+
 
     gifDiv.append(image)
     gifDiv.append(p)
@@ -48,12 +52,12 @@ $.ajax({
 renderButtons();
 
 
-$("#images").on("click", function(){
+$("#images").on("click", ".gif",function(){
     
     var state = $(this).attr("data-state");
     console.log(this);
     if (state === "still") {
-        alert("clicked")
+        
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
       } else {
