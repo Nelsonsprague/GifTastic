@@ -33,8 +33,8 @@ $.ajax({
     image.attr("src", imageUrl)
     image.attr("alt", search)
 
-    gifDiv.append(p)
     gifDiv.append(image)
+    gifDiv.append(p)
 
     $("#images").prepend(gifDiv)
 
@@ -46,13 +46,18 @@ $.ajax({
 })
 
 renderButtons();
-// $(".gif").on("click", function(){
-//     if( state === "still"){
-//         $(this).attr("src",$(this.attr("data-animate"))
-//         );
-//         $this.attr("data-state", "animate");
-//     }else{
-//         $(this).attr("src",$(this).attr("data-still"));
-//         $(this).attr("data-state","still");
-//     }
-// })
+
+
+$("#images").on("click", function(){
+    
+    var state = $(this).attr("data-state");
+    console.log(this);
+    if (state === "still") {
+        alert("clicked")
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+})
