@@ -1,4 +1,4 @@
-var topics = ["poker", "ufc", "biking", "climbing"]
+var topics = ["Yoga", "ufc", "Biking", "Climbing"]
 
 function renderButtons(){
     $("#buttons-view").empty();
@@ -18,6 +18,7 @@ renderButtons();
 
 })
 $("#buttons-view").on("click", "button" ,function(){
+    $("#images").empty();
 var search=$(this).text();
 var api = "GJZ9WvM1Yzqy48M1T5lInlpdiDDfCOeM";
 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
